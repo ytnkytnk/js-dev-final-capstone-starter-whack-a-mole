@@ -9,7 +9,7 @@ let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+let difficulty = "easy";
 
 /**
  * Generates a random integer within a range.
@@ -104,11 +104,9 @@ function chooseHole(holes) {
 function gameOver() {
   // TODO: Write your code here
   if (time > 0) {
-    const timeoutID = showUp();
-    return timeoutID;
+    return showUp();
   } else {
-    const gameStopped = stopGame();
-    return gameStopped;
+    return stopGame();
   }
 }
 
@@ -200,7 +198,10 @@ function clearScore() {
 function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
-
+  if (time > 0) {
+    time -= 1;
+    timerDisplay.textContent = time;
+  }
   return time;
 }
 
@@ -212,7 +213,7 @@ function updateTimer() {
  */
 function startTimer() {
   // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
+  timer = setInterval(updateTimer, 1000);
   return timer;
 }
 
@@ -226,9 +227,8 @@ function startTimer() {
  */
 function whack(event) {
   // TODO: Write your code here.
-  // call updateScore() >> return points;
-  console.log("whack!");
   updateScore();
+  return points;
 }
 
 /**
@@ -236,7 +236,7 @@ function whack(event) {
  * Adds the 'click' event listeners to the moles. See the instructions
  * for an example on how to set event listeners using a for loop.
  */
-function setEventListeners(moles) {
+function setEventListeners() {
   // TODO: Write your code here
   // forEach mole add the whack event handler when a player clicks on the mole.
   moles.forEach((mole) => mole.addEventListener("click", whack));
@@ -273,7 +273,10 @@ function stopGame() {
  *
  */
 function startGame() {
+  clearScore();
+  setEventListeners();
   setDuration(10);
+  startTimer();
   showUp();
   return "game started";
 }
