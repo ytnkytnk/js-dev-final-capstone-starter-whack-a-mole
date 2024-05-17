@@ -170,7 +170,11 @@ function toggleVisibility(hole) {
  */
 function updateScore() {
   // TODO: Write your code here
-
+  // Increment the points global variable by 1 point
+  points++;
+  // Update score.textContent with points.
+  score.textContent = points;
+  // Return points;
   return points;
 }
 
@@ -183,8 +187,8 @@ function updateScore() {
  */
 function clearScore() {
   // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
+  points = 0;
+  score.textContent = points;
   return points;
 }
 
@@ -222,8 +226,9 @@ function startTimer() {
  */
 function whack(event) {
   // TODO: Write your code here.
-  // call updateScore()
-  return points;
+  // call updateScore() >> return points;
+  console.log("whack!");
+  updateScore();
 }
 
 /**
@@ -231,9 +236,10 @@ function whack(event) {
  * Adds the 'click' event listeners to the moles. See the instructions
  * for an example on how to set event listeners using a for loop.
  */
-function setEventListeners() {
+function setEventListeners(moles) {
   // TODO: Write your code here
-
+  // forEach mole add the whack event handler when a player clicks on the mole.
+  moles.forEach((mole) => mole.addEventListener("click", whack));
   return moles;
 }
 
