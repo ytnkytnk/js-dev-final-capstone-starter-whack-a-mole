@@ -199,8 +199,13 @@ function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
   if (time > 0) {
+    timerDisplay.style.color = "";
     time -= 1;
     timerDisplay.textContent = time;
+    // change color of timer for count down 3, 2, 1 ...
+    if (time <= 3) {
+      timerDisplay.style.color = "red";
+    }
   }
   return time;
 }
